@@ -1,3 +1,88 @@
+# dtalent - Plataforma de Gestión de Talento
+
+Plataforma completa para gestión de talento, reclutamiento y desarrollo profesional.
+
+Built with [Wasp](https://wasp.sh), based on the [Open Saas](https://opensaas.sh) template.
+
+## 🚀 Despliegue Rápido
+
+### Variables de Entorno Requeridas
+
+```bash
+# Variables ESENCIALES (siempre necesarias)
+DATABASE_URL=postgresql://postgres:sx4WJhHkFk6u8DLL7pOK1Rh9TzIvPCuJ@supabase-db:5432/postgres
+ADMIN_EMAILS=tu-email@dominio.com
+
+# Variables OPCIONALES (agregar cuando las necesites)
+# STRIPE_API_KEY=sk_test_...
+# STRIPE_WEBHOOK_SECRET=whsec_...
+# SENDGRID_API_KEY=SG...
+# OPENAI_API_KEY=sk-...
+# PLAUSIBLE_API_KEY=...
+# PLAUSIBLE_SITE_ID=...
+# PLAUSIBLE_BASE_URL=https://plausible.io
+# PAYMENTS_HOBBY_SUBSCRIPTION_PLAN_ID=price_...
+# PAYMENTS_PRO_SUBSCRIPTION_PLAN_ID=price_...
+# PAYMENTS_CREDITS_10_PLAN_ID=price_...
+```
+
+### Configuración en Coolify
+
+1. **Build Method**: `Dockerfile` o `Nixpacks`
+2. **Port**: `3000`
+3. **Variables de entorno**: Configurar las variables listadas arriba
+
+### Configuración en Otros Proveedores
+
+- **Railway**: Usar Dockerfile
+- **Render**: Usar Dockerfile
+- **DigitalOcean**: Usar Dockerfile
+- **Heroku**: Usar Dockerfile
+
+## 🛠️ Desarrollo Local
+
+```bash
+# Navegar al directorio de la aplicación
+cd template/app
+
+# Instalar dependencias
+npm install
+
+# Configurar variables de entorno
+cp env.server.example .env.server
+# Editar .env.server con tus valores
+
+# Iniciar desarrollo
+wasp start
+```
+
+## 📁 Estructura del Proyecto
+
+```
+├── template/app/          # Código principal de la aplicación
+│   ├── src/              # Código fuente
+│   ├── main.wasp         # Configuración de Wasp
+│   ├── schema.prisma     # Esquema de base de datos
+│   └── package.json      # Dependencias
+├── Dockerfile            # Configuración para Docker
+├── nixpacks.toml         # Configuración para Nixpacks
+└── .dockerignore         # Archivos ignorados en Docker
+```
+
+## 🔧 Características
+
+- 🔐 Autenticación completa (Google, GitHub, Discord, Email)
+- 💳 Integración con Stripe para pagos y suscripciones
+- 📊 Dashboard administrativo con analytics
+- 🤖 Integración con OpenAI para funcionalidades de IA
+- 📁 Sistema de carga de archivos con AWS S3
+- 📧 Sistema de emails automatizados
+- 📈 Analytics con Plausible o Google Analytics
+
+## 📄 Licencia
+
+MIT License
+
 ## Welcome to your new SaaS App! 🎉
 <a href="https://www.producthunt.com/posts/open-saas?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-open&#0045;saas" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=436467&theme=light" alt="Open&#0032;SaaS - Open&#0045;source&#0032;&#0038;&#0032;100&#0037;&#0032;free&#0032;React&#0032;&#0038;&#0032;Node&#0046;js&#0032;SaaS&#0032;starter&#0033; | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
