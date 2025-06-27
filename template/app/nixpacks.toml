@@ -1,0 +1,23 @@
+[phases.setup]
+nixPkgs = ["nodejs_20", "postgresql_15", "git", "openssl"]
+
+[phases.install]
+cmds = [
+  "npm install -g @wasp/cli@latest",
+  "npm ci --only=production"
+]
+
+[phases.build]
+cmds = [
+  "wasp build"
+]
+
+[start]
+cmd = "wasp start"
+
+[variables]
+NODE_ENV = "production"
+PORT = "3000"
+
+[phases.setup.aptPkgs]
+packages = ["wget"] 

@@ -102,3 +102,12 @@ temp/
 
 # Fly.io
 fly.toml
+
+# Docker
+.dockerignore
+
+# Deployment
+deploy-config.md
+
+# Local development
+docker-compose.override.yml

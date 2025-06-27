@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  dtalent-app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_URL=${DATABASE_URL}
+      - ADMIN_EMAILS=${ADMIN_EMAILS}
+      - STRIPE_API_KEY=${STRIPE_API_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PLAUSIBLE_API_KEY=${PLAUSIBLE_API_KEY}
+      - PLAUSIBLE_SITE_ID=${PLAUSIBLE_SITE_ID}
+      - PLAUSIBLE_BASE_URL=${PLAUSIBLE_BASE_URL}
+      - PAYMENTS_HOBBY_SUBSCRIPTION_PLAN_ID=${PAYMENTS_HOBBY_SUBSCRIPTION_PLAN_ID}
+      - PAYMENTS_PRO_SUBSCRIPTION_PLAN_ID=${PAYMENTS_PRO_SUBSCRIPTION_PLAN_ID}
+      - PAYMENTS_CREDITS_10_PLAN_ID=${PAYMENTS_CREDITS_10_PLAN_ID}
+      - AWS_S3_REGION=${AWS_S3_REGION}
+      - AWS_S3_IAM_ACCESS_KEY=${AWS_S3_IAM_ACCESS_KEY}
+      - AWS_S3_IAM_SECRET_KEY=${AWS_S3_IAM_SECRET_KEY}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+      - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID}
+      - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s 
