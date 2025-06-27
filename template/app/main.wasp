@@ -1,24 +1,24 @@
-app OpenSaaS {
+app dtalent {
   wasp: {
     version: "^0.16.0"
   },
 
-  title: "My Open SaaS App",
+  title: "dtalent - Plataforma de Gestión de Talento",
 
   head: [
     "<link rel='icon' href='/favicon.ico' />",
     "<meta charset='utf-8' />",
-    "<meta name='description' content='Your apps main description and features.' />",
-    "<meta name='author' content='Your (App) Name' />",
-    "<meta name='keywords' content='saas, solution, product, app, service' />",
+    "<meta name='description' content='Plataforma completa para gestión de talento, reclutamiento y desarrollo profesional.' />",
+    "<meta name='author' content='dtalent' />",
+    "<meta name='keywords' content='talento, reclutamiento, hr, recursos humanos, desarrollo profesional' />",
     
+    "<meta property='og:site_name' content='dtalent' />",
     "<meta property='og:type' content='website' />",
-    "<meta property='og:title' content='Your Open SaaS App' />",
-    "<meta property='og:site_name' content='Your Open SaaS App' />",
-    "<meta property='og:url' content='https://your-saas-app.com' />",
-    "<meta property='og:description' content='Your apps main description and features.' />",
-    "<meta property='og:image' content='https://your-saas-app.com/public-banner.webp' />",
-    "<meta name='twitter:image' content='https://your-saas-app.com/public-banner.webp' />",
+    "<meta property='og:title' content='dtalent - Plataforma de Gestión de Talento' />",
+    "<meta property='og:url' content='https://dtalent.com' />",
+    "<meta property='og:description' content='Plataforma completa para gestión de talento y reclutamiento.' />",
+    "<meta property='og:image' content='https://dtalent.com/public-banner.webp' />",
+    "<meta name='twitter:image' content='https://dtalent.com/public-banner.webp' />",
     "<meta name='twitter:image:width' content='800' />",
     "<meta name='twitter:image:height' content='400' />",
     "<meta name='twitter:card' content='summary_large_image' />",
