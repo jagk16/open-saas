@@ -1,23 +1,26 @@
 [phases.setup]
-nixPkgs = ["nodejs_20", "postgresql_15", "git", "openssl"]
+nixPkgs = ["nodejs_20", "postgresql_15", "git", "openssl", "curl"]
 
 [phases.install]
 cmds = [
-  "npm install -g @wasp/cli@latest",
+  "curl -sSL https://get.wasp-lang.dev/installer.sh | sh",
+  "export PATH=\"/root/.local/bin:$PATH\"",
   "cd template/app && npm ci --only=production"
 ]
 
 [phases.build]
 cmds = [
+  "export PATH=\"/root/.local/bin:$PATH\"",
   "cd template/app && wasp build"
 ]
 
 [start]
-cmd = "cd template/app && wasp start"
+cmd = "export PATH=\"/root/.local/bin:$PATH\" && cd template/app && wasp start"
 
 [variables]
 NODE_ENV = "production"
 PORT = "3000"
+PATH = "/root/.local/bin:$PATH"
 
 [phases.setup.aptPkgs]
 packages = ["wget"] 

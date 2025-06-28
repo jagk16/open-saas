@@ -8,10 +8,14 @@ RUN apk add --no-cache \
     make \
     g++ \
     postgresql-client \
-    openssl
+    openssl \
+    curl
 
-# Instalar Wasp CLI globalmente
-RUN npm install -g @wasp/cli@latest
+# Instalar Wasp CLI usando el método oficial
+RUN curl -sSL https://get.wasp-lang.dev/installer.sh | sh
+
+# Agregar Wasp al PATH
+ENV PATH="/root/.local/bin:$PATH"
 
 # Crear directorio de trabajo
 WORKDIR /app
