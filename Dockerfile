@@ -11,11 +11,9 @@ RUN apk add --no-cache \
     openssl \
     curl
 
-# Instalar Wasp CLI usando el método oficial
-RUN curl -sSL https://get.wasp-lang.dev/installer.sh | sh
-
-# Agregar Wasp al PATH
-ENV PATH="/root/.local/bin:$PATH"
+# Instalar Wasp CLI usando el método oficial y crear symlink global
+RUN curl -sSL https://get.wasp-lang.dev/installer.sh | sh \
+    && ln -s /root/.local/bin/wasp /usr/local/bin/wasp
 
 # Crear directorio de trabajo
 WORKDIR /app
@@ -32,7 +30,7 @@ RUN npm ci --only=production
 # Copiar código fuente
 COPY template/app/ .
 
-# Construir la aplicación
+# Construir la aplicación (como root, para que Wasp encuentre su binario)
 RUN wasp build
 
 # Crear usuario no-root para seguridad
