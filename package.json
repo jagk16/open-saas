@@ -1,0 +1,68 @@
+{
+  "name": "dtalent",
+  "version": "1.0.0",
+  "description": "Plataforma de gestión de talento y reclutamiento",
+  "private": true,
+  "scripts": {
+    "build": "wasp build",
+    "clean": "wasp clean",
+    "db:generate-client": "wasp db generate-client",
+    "db:migrate": "wasp db migrate",
+    "db:migrate-dev": "wasp db migrate-dev",
+    "db:reset": "wasp db reset",
+    "db:seed": "wasp db seed",
+    "db:studio": "wasp db studio",
+    "start": "wasp start",
+    "start:db": "wasp start db",
+    "test": "wasp test",
+    "test:e2e": "wasp test e2e",
+    "deploy": "wasp deploy fly deploy",
+    "deploy:launch": "wasp deploy fly launch"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.450.0",
+    "@aws-sdk/s3-presigned-post": "^3.450.0",
+    "@aws-sdk/s3-request-presigner": "^3.450.0",
+    "@google-analytics/data": "^4.0.0",
+    "@lemonsqueezy/lemonsqueezy.js": "^1.0.0",
+    "@prisma/client": "^5.6.0",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "astro": "^3.5.4",
+    "faker": "^6.6.6",
+    "openai": "^4.20.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^4.12.0",
+    "react-router-dom": "^6.8.1",
+    "stripe": "^14.7.0",
+    "vanilla-cookieconsent": "^3.0.16",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.53.0",
+    "postcss": "^8.4.31",
+    "prisma": "^5.6.0",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "talento",
+    "reclutamiento",
+    "hr",
+    "recursos humanos",
+    "wasp",
+    "react",
+    "nodejs"
+  ],
+  "author": "dtalent",
+  "license": "MIT"
+} 
