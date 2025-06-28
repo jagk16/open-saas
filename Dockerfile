@@ -1,6 +1,23 @@
-FROM wasplang/wasp:0.16.6
+FROM node:20-alpine
 
 WORKDIR /app
+
+# Instalar dependencias del sistema necesarias para Wasp CLI
+RUN apk add --no-cache \
+    git \
+    python3 \
+    make \
+    g++ \
+    postgresql-client \
+    openssl \
+    curl \
+    bash \
+    tar \
+    xz
+
+# Instalar Wasp CLI usando la URL oficial
+RUN curl -sSL https://get.wasp.sh/installer.sh | bash \
+    && ln -s /root/.local/bin/wasp /usr/local/bin/wasp
 
 # Copiar archivos del proyecto
 COPY . .
