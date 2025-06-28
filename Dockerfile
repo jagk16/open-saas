@@ -14,10 +14,10 @@ RUN apk add --no-cache \
     tar \
     xz
 
-# Instalar Wasp CLI usando bash y crear symlink global
-RUN curl -sSL https://get.wasp-lang.dev/installer.sh | bash \
+# Instalar Wasp CLI usando la URL oficial y crear symlink global
+RUN curl -sSL https://get.wasp.sh/installer.sh | bash \
     && ln -s /root/.local/bin/wasp /usr/local/bin/wasp \
-    && wasp --version
+    && /root/.local/bin/wasp --version
 
 # Crear directorio de trabajo
 WORKDIR /app
@@ -35,7 +35,7 @@ RUN npm ci --only=production
 COPY template/app/ .
 
 # Construir la aplicación (como root, para que Wasp encuentre su binario)
-RUN wasp build
+RUN /root/.local/bin/wasp build
 
 # Crear usuario no-root para seguridad
 RUN addgroup -g 1001 -S nodejs
@@ -57,4 +57,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
 
 # Comando de inicio
-CMD ["wasp", "start"] 
+CMD ["/root/.local/bin/wasp", "start"] 
