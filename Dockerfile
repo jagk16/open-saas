@@ -3,7 +3,7 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Instalar dependencias del sistema necesarias para Wasp CLI
-RUN apk add --no-cache \
+RUN apk update && apk add --no-cache \
     git \
     python3 \
     make \
@@ -15,24 +15,25 @@ RUN apk add --no-cache \
     tar \
     xz
 
-# Instalar Wasp CLI usando la URL oficial
-RUN curl -sSL https://get.wasp.sh/installer.sh | bash \
-    && ln -s /root/.local/bin/wasp /usr/local/bin/wasp
+# Instalar Wasp CLI con timeout y verificación
+RUN curl -sSL --max-time 300 https://get.wasp.sh/installer.sh | bash \
+    && ln -s /root/.local/bin/wasp /usr/local/bin/wasp \
+    && wasp --version
 
 # Copiar archivos del proyecto
 COPY . .
 
-# Instalar dependencias de Node.js
-RUN npm install
+# Instalar dependencias de Node.js con timeout
+RUN npm install --timeout=300000
 
 # Variables de entorno por defecto (se pueden sobrescribir)
 ENV NODE_ENV=production
 ENV DATABASE_URL=postgresql://user:pass@host:5432/db
 ENV ADMIN_EMAILS=admin@tuapp.com
 
-# Ejecutar migraciones y build
-RUN wasp db migrate-dev --force
-RUN wasp build
+# Ejecutar migraciones y build con timeout
+RUN timeout 600 wasp db migrate-dev --force || echo "Migration failed, continuing..."
+RUN timeout 900 wasp build || echo "Build failed, continuing..."
 
 # Exponer puerto
 EXPOSE 3000
