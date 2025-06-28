@@ -1,7 +1,7 @@
 # Usar Node.js 20 como base
 FROM node:20-alpine
 
-# Instalar dependencias del sistema
+# Instalar dependencias del sistema necesarias para Wasp CLI
 RUN apk add --no-cache \
     git \
     python3 \
@@ -9,11 +9,15 @@ RUN apk add --no-cache \
     g++ \
     postgresql-client \
     openssl \
-    curl
+    curl \
+    bash \
+    tar \
+    xz
 
-# Instalar Wasp CLI usando el método oficial y crear symlink global
-RUN curl -sSL https://get.wasp-lang.dev/installer.sh | sh \
-    && ln -s /root/.local/bin/wasp /usr/local/bin/wasp
+# Instalar Wasp CLI usando bash y crear symlink global
+RUN curl -sSL https://get.wasp-lang.dev/installer.sh | bash \
+    && ln -s /root/.local/bin/wasp /usr/local/bin/wasp \
+    && wasp --version
 
 # Crear directorio de trabajo
 WORKDIR /app
